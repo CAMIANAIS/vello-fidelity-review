@@ -119,27 +119,32 @@ function AuditPage() {
             <Eyebrow>Real deliverables — download</Eyebrow>
             <div className="mt-[var(--space-3)] flex flex-wrap gap-3">
               {[
-                {
-                  label: "Fidelity audit (.md)",
-                  href: "/deliverables/fidelity-audit.md",
-                },
-                {
-                  label: "Engineering checklist (.md)",
-                  href: "/deliverables/engineering-design-support-checklist.md",
-                },
-                {
-                  label: "Handoff checklist (.md)",
-                  href: "/deliverables/handoff-checklist.md",
-                },
+                { label: "Fidelity audit", base: "fidelity-audit" },
+                { label: "Engineering checklist", base: "engineering-design-support-checklist" },
+                { label: "Handoff checklist", base: "handoff-checklist" },
               ].map((file) => (
-                <a
-                  key={file.href}
-                  href={file.href}
-                  download
-                  className="rounded-[var(--radius-md)] border border-brand-primary/30 bg-success-tint/50 px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-brand hover:border-brand-primary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                <div
+                  key={file.base}
+                  className="flex items-center gap-[var(--space-2)] rounded-[var(--radius-md)] border border-brand-primary/30 bg-success-tint/50 px-[var(--space-4)] py-[var(--space-2)]"
                 >
-                  ↓ {file.label}
-                </a>
+                  <span className="font-mono text-[length:var(--text-xs)] text-text-brand">
+                    {file.label}
+                  </span>
+                  <a
+                    href={`/deliverables/${file.base}.md`}
+                    download
+                    className="rounded-[var(--radius-sm)] border border-brand-primary/40 bg-card px-[var(--space-2)] py-[var(--space-1)] font-mono text-[length:var(--text-2xs)] text-text-brand hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    ↓ .md
+                  </a>
+                  <a
+                    href={`/deliverables/${file.base}.pdf`}
+                    download
+                    className="rounded-[var(--radius-sm)] border border-brand-primary/40 bg-card px-[var(--space-2)] py-[var(--space-1)] font-mono text-[length:var(--text-2xs)] text-text-brand hover:border-brand-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    ↓ .pdf
+                  </a>
+                </div>
               ))}
             </div>
           </div>
