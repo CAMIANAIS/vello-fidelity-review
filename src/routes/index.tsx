@@ -10,14 +10,17 @@ import {
   StatusPill,
 } from "@/components/audit/primitives";
 import beforeGuardrail from "../../design/docs/versions/firstpromptversion.png";
+import midGuardrail from "../../design/docs/versions/thirdpromptversion.png";
 import afterGuardrail from "../../design/docs/versions/projectwithguardarils.png";
 import notReachableTab from "../../design/docs/accesibilityIssue/notreachablewithtab.png";
 import tabKeyboardWorking from "../../design/docs/audit/tabkeyboardisworking.png";
 import ariaLabelIssue from "../../design/docs/accesibilityIssue/arialabel.png";
 import verifiedShieldAria from "../../design/docs/audit/verified-shield-aria.png";
 import contrastCheck from "../../design/docs/contrastIssue/contrast.png";
+import contrastVerified from "../../design/docs/contrastIssue/contrast1.png";
 import useDesignTokens from "../../design/docs/audit/usedesign tokens.png";
 import shieldRefusal from "../../design/docs/answersClaude/tool refused to fake a component it couldn't verify.png";
+import rebuildAnswer from "../../design/docs/answersClaude/Rebuild-on-real-component.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,6 +113,35 @@ function AuditPage() {
             >
               Earlier build (v1–v3, manual fixes, the “before”) ↗
             </a>
+          </div>
+
+          <div className="mt-8">
+            <Eyebrow>Real deliverables — download</Eyebrow>
+            <div className="mt-[var(--space-3)] flex flex-wrap gap-3">
+              {[
+                {
+                  label: "Fidelity audit (.md)",
+                  href: "/deliverables/fidelity-audit.md",
+                },
+                {
+                  label: "Engineering checklist (.md)",
+                  href: "/deliverables/engineering-design-support-checklist.md",
+                },
+                {
+                  label: "Handoff checklist (.md)",
+                  href: "/deliverables/handoff-checklist.md",
+                },
+              ].map((file) => (
+                <a
+                  key={file.href}
+                  href={file.href}
+                  download
+                  className="rounded-[var(--radius-md)] border border-brand-primary/30 bg-success-tint/50 px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-brand hover:border-brand-primary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  ↓ {file.label}
+                </a>
+              ))}
+            </div>
           </div>
 
         </header>
@@ -309,11 +341,18 @@ function AuditPage() {
                   caption="Real shield + accessible label, fixed"
                 />
               </div>
-              <AuditFigure
-                src={contrastCheck}
-                alt="Contrast checker showing 5.69 to 1 ratio passing AA"
-                caption="Contrast checked: 5.69:1, passes AA"
-              />
+              <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
+                <AuditFigure
+                  src={contrastCheck}
+                  alt="Devtools inspector on the Available badge showing its live colors, hex 466621 on hex EBF1DB"
+                  caption="Live component colors, read from devtools: #466621 on #EBF1DB"
+                />
+                <AuditFigure
+                  src={contrastVerified}
+                  alt="WebAIM Contrast Checker showing a 5.69 to 1 ratio for those exact colors"
+                  caption="Same two colors, run through WebAIM: 5.69:1, passes AA"
+                />
+              </div>
               <p>
                 The contrast number is <Mono>--green-700</Mono> on <Mono>--green-100</Mono>, checked
                 in the WebAIM Contrast Checker. The real background is <Mono>--green-50</Mono>,
@@ -338,11 +377,16 @@ function AuditPage() {
               title="The guardrail test: measurable before and after"
               summary="Same component, same reference. The only variable was whether the written guardrail was active."
             >
-              <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
+              <div className="grid gap-[var(--space-4)] sm:grid-cols-3">
                 <AuditFigure
                   src={beforeGuardrail}
                   alt="Provider card build before guardrail was active"
-                  caption="Before: no guardrail"
+                  caption="v1: before, no guardrail"
+                />
+                <AuditFigure
+                  src={midGuardrail}
+                  alt="Provider card build at round three of manual fixes, badge still hand-corrected one at a time"
+                  caption="v3: three manual rounds in, still hand-fixing one property at a time"
                 />
                 <AuditFigure
                   src={afterGuardrail}
@@ -420,6 +464,11 @@ function AuditPage() {
                   {
                     t: "Rebuild on the real ProviderCard?",
                     d: "The real ProviderCard, Badge, Tag, Rating and VerifiedMark are all accessible via the bundle. Declined for now: the real ProviderCard uses the documented layout, so rebuilding on it would silently answer question 1.",
+                    figure: {
+                      src: rebuildAnswer,
+                      alt: "AI response noting the audit card is a hand-built copy of ProviderCard and offering to rebuild it on the real component",
+                      caption: "The exact moment this question came up — asked, not decided silently",
+                    },
                   },
                 ].map((q, i) => (
                   <li
@@ -431,6 +480,15 @@ function AuditPage() {
                     </p>
                     <p className="mt-[var(--space-2)] font-semibold text-text-strong">{q.t}</p>
                     <p className="mt-2">{q.d}</p>
+                    {q.figure ? (
+                      <div className="mt-[var(--space-4)]">
+                        <AuditFigure
+                          src={q.figure.src}
+                          alt={q.figure.alt}
+                          caption={q.figure.caption}
+                        />
+                      </div>
+                    ) : null}
                   </li>
                 ))}
               </ol>
@@ -449,6 +507,9 @@ function AuditPage() {
                     body: "Six-phase process map, Discover → Handoff, one decision and one artifact per phase.",
                     flag:
                       "Honest gap: the task asked for two documented pushbacks against the first process map. That back-and-forth happened live, but wasn’t captured in writing. Naming it rather than pretending otherwise.",
+                    links: [
+                      { label: "Process map artifact ↗", href: "https://claude.ai/artifact/6v2sxFt3rQra9iUA6tabLu" },
+                    ],
                   },
                   {
                     day: "Tuesday — research synthesis",
@@ -461,6 +522,16 @@ function AuditPage() {
                     body: "Full flow diagram, per-screen state tables, endpoint list with states.",
                     flag:
                       "Known failure, not yet closed: that session had no access to the live design system, so the flow came from generic marketplace patterns, not Vello’s real admin screens. Its “named gap” is a hypothesis, not a verified diff.",
+                    links: [
+                      {
+                        label: "Site map + schema (Lucidchart) ↗",
+                        href: "https://lucid.app/lucidchart/b0fdcfa5-107b-462f-bbef-ea44a64d9e00/edit?beaconFlowId=403E2B6CD2079D9F&page=0_0&invitationId=inv_e646af4a-ef4a-433c-abef-1d2c2c44f2f5#",
+                      },
+                      {
+                        label: "Flow + schema artifact ↗",
+                        href: "https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L?sk=3qOUi4mBgiZ2B2Ngjefo8g",
+                      },
+                    ],
                   },
                   {
                     day: "Thursday — component audit",
@@ -486,6 +557,21 @@ function AuditPage() {
                     <p className="mt-[var(--space-3)] border-l-[3px] border-accent pl-[var(--space-4)] text-text-muted">
                       {d.flag}
                     </p>
+                    {d.links ? (
+                      <div className="mt-[var(--space-4)] flex flex-wrap gap-[var(--space-2)]">
+                        {d.links.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-[var(--radius-md)] border border-border bg-card px-[var(--space-4)] py-[var(--space-2)] font-mono text-[length:var(--text-xs)] text-text-body hover:border-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
                   </article>
                 ))}
               </div>
