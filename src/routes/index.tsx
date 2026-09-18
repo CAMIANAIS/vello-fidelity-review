@@ -1,7 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GradeProvider, GradeSummary } from "@/components/audit/grading";
+import { GuardrailDoneCallout, GuardrailSpec } from "@/components/audit/guardrail-spec";
 import { Section } from "@/components/audit/section";
-import { DataTable, Eyebrow, Mono, Quote, StatusPill } from "@/components/audit/primitives";
+import {
+  AuditFigure,
+  DataTable,
+  Eyebrow,
+  Mono,
+  Quote,
+  StatusPill,
+} from "@/components/audit/primitives";
+import beforeGuardrail from "../../design/docs/versions/firstpromptversion.png";
+import afterGuardrail from "../../design/docs/versions/projectwithguardarils.png";
+import notReachableTab from "../../design/docs/accesibilityIssue/notreachablewithtab.png";
+import tabKeyboardWorking from "../../design/docs/audit/tabkeyboardisworking.png";
+import ariaLabelIssue from "../../design/docs/accesibilityIssue/arialabel.png";
+import verifiedShieldAria from "../../design/docs/audit/verified-shield-aria.png";
+import contrastCheck from "../../design/docs/contrastIssue/contrast.png";
+import useDesignTokens from "../../design/docs/audit/usedesign tokens.png";
+import shieldRefusal from "../../design/docs/answersClaude/tool refused to fake a component it couldn't verify.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,7 +54,6 @@ const SECTIONS = [
 
 function AuditPage() {
   return (
-    <GradeProvider>
       <div className="min-h-screen bg-background">
         <a
           href="#guardrail"
@@ -52,7 +67,7 @@ function AuditPage() {
           <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-[1.05] text-foreground sm:text-6xl">
             ProviderCard: a design fidelity audit
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-body">
+          <p className="mt-[var(--space-6)] max-w-2xl text-[length:var(--text-lg)] leading-[var(--lh-relaxed)] text-text-body">
             One component, built with AI assistance from the Home screen reference, cross-checked
             against the real Vello token files and component bundle. Everything below is what was
             found, what was fixed, and what was deliberately left open.
@@ -64,11 +79,16 @@ function AuditPage() {
               { k: "Contrast checked", v: "5.69:1 — passes AA" },
               { k: "Left unresolved", v: "5 questions for design" },
             ].map((item) => (
-              <div key={item.k} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+              <div
+                key={item.k}
+                className="rounded-[var(--radius-lg)] border border-border bg-card p-[var(--space-5)] shadow-sm"
+              >
+                <dt className="font-mono text-[length:var(--text-2xs)] uppercase tracking-[var(--ls-wide)] text-text-muted">
                   {item.k}
                 </dt>
-                <dd className="mt-2 text-[15px] font-semibold text-foreground">{item.v}</dd>
+                <dd className="mt-[var(--space-2)] text-[length:var(--text-sm)] font-semibold text-text-strong">
+                  {item.v}
+                </dd>
               </div>
             ))}
           </dl>
@@ -78,7 +98,7 @@ function AuditPage() {
               href="https://claude.ai/design/p/82fde247-6976-415f-b9a6-f69df091813a?file=Vello+Provider+Card.dc.html&via=share"
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl border border-border bg-card px-4 py-2.5 font-mono text-xs text-ink-body hover:border-ink-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="rounded-[var(--radius-md)] border border-border bg-card px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-body hover:border-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               Working build (guardrail-active, the “after”) ↗
             </a>
@@ -86,15 +106,12 @@ function AuditPage() {
               href="https://claude.ai/design/p/a31ed5d9-0b86-4424-8dff-301c4a5b2f56?file=Provider+Card+Audit.dc.html"
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl border border-border bg-card px-4 py-2.5 font-mono text-xs text-ink-body hover:border-ink-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="rounded-[var(--radius-md)] border border-border bg-card px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-body hover:border-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               Earlier build (v1–v3, manual fixes, the “before”) ↗
             </a>
           </div>
 
-          <div className="mt-10">
-            <GradeSummary total={SECTIONS.length} />
-          </div>
         </header>
 
         <div className="mx-auto max-w-5xl gap-10 px-5 pb-24 sm:px-8 lg:flex lg:max-w-6xl">
@@ -102,15 +119,15 @@ function AuditPage() {
             aria-label="Sections"
             className="mb-10 shrink-0 lg:sticky lg:top-10 lg:mb-0 lg:h-fit lg:w-56"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-muted">
+            <p className="font-mono text-[length:var(--text-2xs)] uppercase tracking-[var(--ls-wide)] text-text-muted">
               Review in order
             </p>
-            <ul className="mt-3 space-y-1.5">
+            <ul className="mt-[var(--space-3)] space-y-[var(--space-2)]">
               {SECTIONS.map((s) => (
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="block rounded-lg px-2 py-1.5 font-mono text-xs text-ink-body hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="block rounded-[var(--radius-sm)] px-[var(--space-2)] py-[var(--space-2)] font-mono text-[length:var(--text-xs)] text-text-body hover:bg-muted hover:text-text-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     {s.label}
                   </a>
@@ -132,52 +149,27 @@ function AuditPage() {
               </Quote>
               <ul className="space-y-3">
                 <li>
-                  <strong className="text-foreground">Real tokens, not hardcoded values</strong> —
+                  <strong className="text-text-strong">Real tokens, not hardcoded values</strong> —
                   keeps every trust mark consistent across the app, so a requester learns to
                   recognize it once and trusts it everywhere.
                 </li>
                 <li>
-                  <strong className="text-foreground">Shape + color, never color alone</strong> — a
+                  <strong className="text-text-strong">Shape + color, never color alone</strong> — a
                   shield rebuilt as a plain circle isn’t a small style slip, it’s the accessible
                   signal the trust bet depends on, gone.
                 </li>
                 <li>
-                  <strong className="text-foreground">Real labels, real keyboard access</strong> —
+                  <strong className="text-text-strong">Real labels, real keyboard access</strong> —
                   if only sighted mouse users can perceive who’s verified, the trust mechanism
                   silently excludes everyone else.
                 </li>
                 <li>
-                  <strong className="text-foreground">Flag uncertainty, never guess</strong> — an
+                  <strong className="text-text-strong">Flag uncertainty, never guess</strong> — an
                   invented data point is worse than an honest gap, because it’s a false trust signal
                   presented as a real one.
                 </li>
               </ul>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-border bg-muted/50 p-5">
-                  <Eyebrow>Tokens to use</Eyebrow>
-                  <ul className="mt-3 space-y-2 font-mono text-[13px] text-ink-body">
-                    <li>Spacing: --space-0 … --space-32 only</li>
-                    <li>Radius: --radius-xs/sm/md/lg/xl/2xl/pill</li>
-                    <li>Type: --text-2xs (11) … --text-6xl (76)</li>
-                    <li>Shadows: --shadow-xs/sm/md/lg/xl/inset/brand</li>
-                  </ul>
-                </div>
-                <div className="rounded-xl border border-persimmon/30 bg-persimmon-tint/50 p-5">
-                  <Eyebrow>Banned</Eyebrow>
-                  <ul className="mt-3 space-y-2 text-[14px] text-ink-body">
-                    <li>No hardcoded hex or raw px outside the scales.</li>
-                    <li>No inventing a color pair when a semantic token exists.</li>
-                    <li>No approximating a missing asset — say so instead.</li>
-                    <li>No silently resolving a conflict between two references.</li>
-                    <li>No rounding one scale to match an unrelated scale.</li>
-                  </ul>
-                </div>
-              </div>
-              <p className="text-ink-muted">
-                Accessibility baseline: body text never below 14px, tap targets never below 44px,
-                contrast never below 4.5:1, and any tappable element must be a real focusable
-                control — never a <Mono>div</Mono> with only <Mono>onClick</Mono>.
-              </p>
+              <GuardrailSpec />
             </Section>
 
             <Section
@@ -227,8 +219,13 @@ function AuditPage() {
                 <StatusPill tone="fixed">6 fixed</StatusPill>
                 <StatusPill tone="open">2 left documented, not “fixed”</StatusPill>
               </div>
+              <AuditFigure
+                src={useDesignTokens}
+                alt="Rendered output showing real design tokens in use"
+                caption="Real tokens confirmed in the rendered output"
+              />
               <p>
-                <strong className="text-foreground">Left open on purpose:</strong> the walk-time
+                <strong className="text-text-strong">Left open on purpose:</strong> the walk-time
                 chip’s styling and the 13px icon size. Both are open questions, not confirmed drift.
               </p>
               <Quote>
@@ -237,7 +234,7 @@ function AuditPage() {
                 reference itself doesn’t follow its own scale. The walk-chip’s padding and the
                 card’s 14px gap are exact matches to real, off-token production code.
               </Quote>
-              <p className="text-ink-muted">
+              <p className="text-text-muted">
                 The system breaks its own rules too: <Mono>Tag</Mono>’s documented padding is{" "}
                 <Mono>8px 14px</Mono>, and 14px isn’t on the official <Mono>--space</Mono> scale
                 either (it jumps 12 → 16). This isn’t only AI drift.
@@ -284,19 +281,45 @@ function AuditPage() {
                     "Contrast: walk-time chip text on its background",
                     "WCAG 1.4.3 AA (4.5:1)",
                     <span key="5">
-                      Checked: <strong className="text-green-700">5.69:1</strong> — passes, no fix
+                      Checked: <strong className="text-text-brand">5.69:1</strong> — passes, no fix
                       needed
                     </span>,
                   ],
                 ]}
               />
+              <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
+                <AuditFigure
+                  src={notReachableTab}
+                  alt="Provider card that could not be reached with Tab key"
+                  caption="Card wasn't keyboard-reachable"
+                />
+                <AuditFigure
+                  src={tabKeyboardWorking}
+                  alt="Provider card rebuilt as a real button reachable with Tab"
+                  caption="Fixed: real button, Tab reaches it"
+                />
+                <AuditFigure
+                  src={ariaLabelIssue}
+                  alt="Verified mark missing an accessible label"
+                  caption="Missing accessible label, found"
+                />
+                <AuditFigure
+                  src={verifiedShieldAria}
+                  alt="Real shield with accessible label applied"
+                  caption="Real shield + accessible label, fixed"
+                />
+              </div>
+              <AuditFigure
+                src={contrastCheck}
+                alt="Contrast checker showing 5.69 to 1 ratio passing AA"
+                caption="Contrast checked: 5.69:1, passes AA"
+              />
               <p>
-                The contrast number is <Mono>--green-700</Mono> (<Mono>#466621</Mono>) on{" "}
-                <Mono>--green-100</Mono> (<Mono>#EBF1DB</Mono>), checked in the WebAIM Contrast
-                Checker. The real background is <Mono>--green-50</Mono>, lighter — so the shipped
-                ratio is at least this good.
+                The contrast number is <Mono>--green-700</Mono> on <Mono>--green-100</Mono>, checked
+                in the WebAIM Contrast Checker. The real background is <Mono>--green-50</Mono>,
+                lighter — so the shipped ratio is at least this good.
               </p>
-              <div className="rounded-xl border border-border bg-muted/50 p-5">
+              <div className="rounded-[var(--radius-md)] border border-border bg-muted/50 p-[var(--space-5)]">
                 <Eyebrow>Conflict flagged, not silently resolved</Eyebrow>
                 <p className="mt-3">
                   The chevron affordance in the reference is ~28px, below the 44px tap-target
@@ -315,33 +338,55 @@ function AuditPage() {
               title="The guardrail test: measurable before and after"
               summary="Same component, same reference. The only variable was whether the written guardrail was active."
             >
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-border bg-card p-5">
+              <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
+                <AuditFigure
+                  src={beforeGuardrail}
+                  alt="Provider card build before guardrail was active"
+                  caption="Before: no guardrail"
+                />
+                <AuditFigure
+                  src={afterGuardrail}
+                  alt="Provider card build with guardrail active"
+                  caption="After: guardrail active"
+                />
+              </div>
+              <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
+                <div className="rounded-[var(--radius-md)] border border-border bg-card p-[var(--space-5)] shadow-brand">
                   <StatusPill tone="open">Before — v1–v3</StatusPill>
-                  <p className="mt-4">
+                  <p className="mt-[var(--space-4)]">
                     Padding, shadow, text sizes, badge color, the verified mark’s shape, its missing
                     label, and the keyboard bug each needed a separate, hand-written fix
                     instruction, one round at a time.
                   </p>
                 </div>
-                <div className="rounded-xl border border-green-700/30 bg-green-100/50 p-5">
+                <div className="rounded-[var(--radius-md)] border border-brand-primary/30 bg-success-tint/50 p-[var(--space-5)] shadow-brand">
                   <StatusPill tone="fixed">After — guardrail active</StatusPill>
-                  <p className="mt-4">
+                  <p className="mt-[var(--space-4)]">
                     Regenerated from a plain instruction with no hand-corrected spec. Every one of
                     those matched the reference on the first try, with no follow-up — and it flagged
                     two new honest gaps on its own instead of guessing.
                   </p>
                 </div>
               </div>
-              <p>
-                Two things it refused to fake, correctly: the shield (asked twice for the real
-                source instead of approximating with a circle), and the avatar photo — it rendered
-                the real <Mono>Avatar</Mono> initials fallback rather than invent a portrait. For
-                the card width, where no container token matches the reference, it used{" "}
-                <Mono>calc(var(--container-app) + var(--space-12))</Mono> — a token-derived value —
-                and flagged it, instead of a guessed raw px.
-              </p>
-              <p className="text-ink-muted">
+              <div className="rounded-[var(--radius-md)] border border-accent/30 bg-accent-tint/30 p-[var(--space-5)]">
+                <Eyebrow>Judgment calls</Eyebrow>
+                <p className="mt-[var(--space-3)]">
+                  Two things it refused to fake, correctly: the shield (asked twice for the real
+                  source instead of approximating with a circle), and the avatar photo — it rendered
+                  the real <Mono>Avatar</Mono> initials fallback rather than invent a portrait. For
+                  the card width, where no container token matches the reference, it used{" "}
+                  <Mono>calc(var(--container-app) + var(--space-12))</Mono> — a token-derived value
+                  — and flagged it, instead of a guessed raw px.
+                </p>
+                <div className="mt-[var(--space-4)]">
+                  <AuditFigure
+                    src={shieldRefusal}
+                    alt="AI tool refusing to approximate a shield without the real source"
+                    caption="AI refused to guess shield shape, asked for the real source instead"
+                  />
+                </div>
+              </div>
+              <p className="text-text-muted">
                 Four component states were built explicitly, not just the happy path: Success, No
                 rating yet (“Not rated yet,” never a faked rating), No photo (initials), and
                 Unavailable (tag reads “Unavailable”).
@@ -377,11 +422,14 @@ function AuditPage() {
                     d: "The real ProviderCard, Badge, Tag, Rating and VerifiedMark are all accessible via the bundle. Declined for now: the real ProviderCard uses the documented layout, so rebuilding on it would silently answer question 1.",
                   },
                 ].map((q, i) => (
-                  <li key={q.t} className="rounded-xl border border-border bg-muted/40 p-5">
-                    <p className="font-mono text-xs text-persimmon">
+                  <li
+                    key={q.t}
+                    className="rounded-[var(--radius-md)] border border-border bg-muted/40 p-[var(--space-5)]"
+                  >
+                    <p className="font-mono text-[length:var(--text-xs)] text-accent-press">
                       {String(i + 1).padStart(2, "0")}
                     </p>
-                    <p className="mt-2 font-semibold text-foreground">{q.t}</p>
+                    <p className="mt-[var(--space-2)] font-semibold text-text-strong">{q.t}</p>
                     <p className="mt-2">{q.d}</p>
                   </li>
                 ))}
@@ -427,10 +475,15 @@ function AuditPage() {
                       "Prompt v2 swapped the vague “attached design system” for the actual colors.css, spacing.css and typography.css contents, after discovering the docs page is a JS app with nothing a tool can read.",
                   },
                 ].map((d) => (
-                  <article key={d.day} className="rounded-xl border border-border bg-card p-5">
-                    <h3 className="text-lg font-bold text-foreground">{d.day}</h3>
-                    <p className="mt-2">{d.body}</p>
-                    <p className="mt-3 border-l-[3px] border-persimmon pl-4 text-ink-muted">
+                  <article
+                    key={d.day}
+                    className="rounded-[var(--radius-md)] border border-border bg-card p-[var(--space-5)]"
+                  >
+                    <h3 className="text-[length:var(--text-lg)] font-bold text-text-strong">
+                      {d.day}
+                    </h3>
+                    <p className="mt-[var(--space-2)]">{d.body}</p>
+                    <p className="mt-[var(--space-3)] border-l-[3px] border-accent pl-[var(--space-4)] text-text-muted">
                       {d.flag}
                     </p>
                   </article>
@@ -441,9 +494,9 @@ function AuditPage() {
                 <em>is</em> a shield. Not a violation. A hypothesis tested and disproved, kept as a
                 legitimate finding rather than discarded.
               </Quote>
-              <div className="rounded-xl border border-border bg-muted/50 p-5">
+              <div className="rounded-[var(--radius-md)] border border-border bg-muted/50 p-[var(--space-5)]">
                 <Eyebrow>The line in every build prompt</Eyebrow>
-                <p className="mt-3 font-mono text-[13px] leading-relaxed text-ink-body">
+                <p className="mt-[var(--space-3)] font-mono text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-body">
                   “Where you have to invent or guess something I didn’t specify, say so explicitly
                   instead of silently picking a value — I want to review those separately.”
                 </p>
@@ -506,15 +559,18 @@ function AuditPage() {
                     avoid: "Building from memory of a meeting instead of the real spec.",
                   },
                 ].map((row) => (
-                  <div key={row.phase} className="rounded-xl border border-border bg-card p-5">
+                  <div
+                    key={row.phase}
+                    className="rounded-[var(--radius-md)] border border-border bg-card p-[var(--space-5)]"
+                  >
                     <Eyebrow>{row.phase}</Eyebrow>
-                    <p className="mt-2 font-semibold text-foreground">{row.doThis}</p>
+                    <p className="mt-[var(--space-2)] font-semibold text-text-strong">{row.doThis}</p>
                     {row.week ? (
-                      <p className="mt-3 rounded-lg bg-green-100 px-4 py-3 text-[14px] text-green-700">
+                      <p className="mt-[var(--space-3)] rounded-[var(--radius-sm)] bg-success-tint px-[var(--space-4)] py-[var(--space-3)] text-[length:var(--text-sm)] text-text-brand">
                         This week: {row.week}
                       </p>
                     ) : null}
-                    <p className="mt-3 text-ink-muted">Avoid: {row.avoid}</p>
+                    <p className="mt-[var(--space-3)] text-text-muted">Avoid: {row.avoid}</p>
                   </div>
                 ))}
               </div>
@@ -568,13 +624,18 @@ function AuditPage() {
                     ],
                   },
                 ].map((group) => (
-                  <div key={group.day} className="rounded-xl border border-border bg-card p-5">
-                    <h3 className="text-lg font-bold text-foreground">{group.day}</h3>
-                    <ul className="mt-3 space-y-3">
+                  <div
+                    key={group.day}
+                    className="rounded-[var(--radius-md)] border border-border bg-card p-[var(--space-5)]"
+                  >
+                    <h3 className="text-[length:var(--text-lg)] font-bold text-text-strong">
+                      {group.day}
+                    </h3>
+                    <ul className="mt-[var(--space-3)] space-y-[var(--space-3)]">
                       {group.items.map((item) => (
-                        <li key={item} className="flex gap-3">
+                        <li key={item} className="flex gap-[var(--space-3)]">
                           <span
-                            className="mt-2 h-2 w-2 shrink-0 rounded-full bg-persimmon"
+                            className="mt-[var(--space-2)] h-2 w-2 shrink-0 rounded-full bg-accent"
                             aria-hidden="true"
                           />
                           <span>{item}</span>
@@ -586,20 +647,9 @@ function AuditPage() {
               </div>
             </Section>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-9">
-              <Eyebrow>Before declaring done</Eyebrow>
-              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-body">
-                Compare the render against the reference screenshot, property by property, before
-                saying it’s finished. Anything that can’t be verified against a real token or the
-                reference: mark unresolved, say so — don’t guess.
-              </p>
-              <div className="mt-6">
-                <GradeSummary total={SECTIONS.length} />
-              </div>
-            </div>
+            <GuardrailDoneCallout />
           </main>
         </div>
       </div>
-    </GradeProvider>
   );
 }

@@ -1,3 +1,6 @@
+@import "../design/docs/colors.css";
+@import "../design/docs/spacing.css";
+@import "../design/docs/typography.css";
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -5,111 +8,67 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Bricolage Grotesque", "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-2xl);
+  --radius-4xl: var(--radius-2xl);
 
-  --radius-sm: calc(var(--radius) - 8px);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--text-strong);
+  --color-card: var(--surface-card);
+  --color-card-foreground: var(--text-strong);
+  --color-popover: var(--surface-card);
+  --color-popover-foreground: var(--text-strong);
+  --color-primary: var(--text-strong);
+  --color-primary-foreground: var(--paper);
+  --color-secondary: var(--color-bg-subtle);
+  --color-secondary-foreground: var(--text-strong);
+  --color-muted: var(--surface-sunken);
+  --color-muted-foreground: var(--text-muted);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
+  --color-accent-foreground: var(--accent-on);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--white);
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--brand-primary);
+  --color-ring-offset-background: var(--color-bg);
 
   --color-paper: var(--paper);
-  --color-paper-deep: var(--paper-deep);
-  --color-ink: var(--ink);
-  --color-ink-body: var(--ink-body);
-  --color-ink-muted: var(--ink-muted);
-  --color-rule: var(--rule);
-  --color-persimmon: var(--persimmon);
-  --color-persimmon-tint: var(--persimmon-tint);
-  --color-green-100: var(--green-100);
-  --color-green-700: var(--green-700);
-  --color-amber: var(--amber);
+  --color-text-strong: var(--text-strong);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-brand: var(--text-brand);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-tint: var(--brand-primary-tint);
+  --color-success: var(--success);
+  --color-success-tint: var(--success-tint);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-press: var(--accent-press);
+  --color-surface-card: var(--surface-card);
 
-  --shadow-soft: 0 1px 2px rgba(58, 52, 38, 0.04), 0 8px 24px -12px rgba(58, 52, 38, 0.18);
-  --shadow-lift: 0 2px 4px rgba(58, 52, 38, 0.05), 0 18px 40px -20px rgba(58, 52, 38, 0.28);
-}
-
-:root {
-  --radius: 1.125rem;
-
-  --paper: #f6f2e7;
-  --paper-deep: #efe9da;
-  --ink: #26241d;
-  --ink-body: #3f3b31;
-  --ink-muted: #75705f;
-  --rule: #e5e4d6;
-  --persimmon: #e2552c;
-  --persimmon-tint: #fbe7df;
-  --green-100: #ebf1db;
-  --green-700: #466621;
-  --amber: #c98a1b;
-
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --card: #fffdf7;
-  --card-foreground: var(--ink);
-  --popover: #fffdf7;
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--paper);
-  --secondary: var(--paper-deep);
-  --secondary-foreground: var(--ink);
-  --muted: var(--paper-deep);
-  --muted-foreground: var(--ink-muted);
-  --accent: var(--persimmon);
-  --accent-foreground: #fffdf7;
-  --destructive: #b03a1e;
-  --destructive-foreground: #fffdf7;
-  --border: var(--rule);
-  --input: var(--rule);
-  --ring: var(--green-700);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-brand: var(--shadow-brand);
+  --shadow-soft: var(--shadow-sm);
 }
 
 .dark {
-  --background: #1b1a15;
-  --foreground: #f4f0e4;
-  --card: #232118;
-  --card-foreground: #f4f0e4;
-  --popover: #232118;
-  --popover-foreground: #f4f0e4;
-  --primary: #f4f0e4;
-  --primary-foreground: #1b1a15;
-  --secondary: #2c2a20;
-  --secondary-foreground: #f4f0e4;
-  --muted: #2c2a20;
-  --muted-foreground: #a9a390;
-  --accent: var(--persimmon);
-  --accent-foreground: #1b1a15;
-  --destructive: #d5603f;
-  --destructive-foreground: #1b1a15;
-  --border: rgba(244, 240, 228, 0.14);
-  --input: rgba(244, 240, 228, 0.18);
-  --ring: #8fae5f;
+  --color-bg: var(--ink-900);
+  --color-bg-subtle: var(--ink-800);
+  --surface-card: var(--ink-800);
+  --surface-sunken: var(--ink-800);
+  --text-strong: var(--paper);
+  --text-body: var(--ink-100);
+  --text-muted: var(--ink-400);
+  --border-default: color-mix(in srgb, var(--paper) 14%, transparent);
+  --border-subtle: color-mix(in srgb, var(--paper) 10%, transparent);
 }
 
 @layer base {
@@ -121,6 +80,7 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: var(--text-base);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -129,6 +89,6 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.015em;
+    letter-spacing: var(--ls-snug);
   }
 }

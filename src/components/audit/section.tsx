@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { GradePanel } from "./grading";
 
 export function Section({
   id,
@@ -17,15 +16,20 @@ export function Section({
   return (
     <section
       id={id}
-      className="scroll-mt-24 rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-9"
+      className="scroll-mt-24 rounded-[var(--radius-lg)] border border-border bg-card p-[var(--space-6)] shadow-sm sm:p-[var(--space-8)]"
     >
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-persimmon">{number}</p>
-      <h2 className="mt-3 text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+      <p className="font-mono text-[length:var(--text-xs)] uppercase tracking-[var(--ls-wider)] text-accent-press">
+        {number}
+      </p>
+      <h2 className="mt-[var(--space-3)] text-[length:var(--text-2xl)] font-bold leading-[var(--lh-snug)] text-text-strong sm:text-[length:var(--text-3xl)]">
         {title}
       </h2>
-      <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-muted">{summary}</p>
-      <div className="mt-7 space-y-6 text-[15px] leading-relaxed text-ink-body">{children}</div>
-      <GradePanel id={id} label={title} />
+      <p className="mt-[var(--space-3)] max-w-2xl text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-muted">
+        {summary}
+      </p>
+      <div className="mt-[var(--space-7)] space-y-[var(--space-6)] text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-body">
+        {children}
+      </div>
     </section>
   );
 }

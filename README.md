@@ -14,7 +14,7 @@ Pull real content from these files (attached). Use the exact
 numbers, token names, and quotes as written — do not summarize
 them away or invent anything:
 - fidelity-audit.md (the main deliverable)
-- guardaril.md
+- design/docs/guardaril.md (design system guardrail spec, alongside colors.css / spacing.css / typography.css)
 - handoff-checklist.md
 - engineering-design-support-checklist.md
 - promptsUse.md (the full process log)

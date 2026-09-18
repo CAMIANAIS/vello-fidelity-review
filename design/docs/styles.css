@@ -1,0 +1,10 @@
+/* ============================================================
+   VELLO DESIGN SYSTEM · DOCS BUNDLE
+   Token CSS + guardaril.md build/a11y guardrail spec.
+   ============================================================ */
+
+@import url("colors.css");
+@import url("spacing.css");
+@import url("typography.css");
+
+/* guardaril.md — tokens to use, banned patterns, a11y baseline, done checklist */

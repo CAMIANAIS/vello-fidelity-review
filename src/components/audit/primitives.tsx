@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export function Mono({ children }: { children: ReactNode }) {
   return (
-    <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-ink-body">
+    <code className="rounded-[var(--radius-xs)] bg-muted px-[var(--space-2)] py-[var(--space-1)] font-mono text-[0.85em] text-text-body">
       {children}
     </code>
   );
@@ -10,7 +10,7 @@ export function Mono({ children }: { children: ReactNode }) {
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="font-mono text-xs uppercase tracking-[0.18em] text-ink-muted">
+    <span className="font-mono text-[length:var(--text-xs)] uppercase tracking-[var(--ls-wider)] text-text-muted">
       {children}
     </span>
   );
@@ -24,13 +24,13 @@ export function StatusPill({
   children: ReactNode;
 }) {
   const tones = {
-    fixed: "bg-green-100 text-green-700",
-    open: "bg-persimmon-tint text-persimmon",
-    note: "bg-muted text-ink-muted",
+    fixed: "bg-success-tint text-text-brand",
+    open: "bg-accent-tint text-accent-press",
+    note: "bg-muted text-text-muted",
   } as const;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${tones[tone]}`}
+      className={`inline-flex items-center gap-[var(--space-2)] rounded-[var(--radius-pill)] px-[var(--space-3)] py-[var(--space-1)] font-mono text-[length:var(--text-2xs)] font-semibold ${tones[tone]}`}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
       {children}
@@ -46,15 +46,15 @@ export function DataTable({
   rows: ReactNode[][];
 }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border bg-card">
-      <table className="w-full min-w-[540px] border-collapse text-left text-sm">
+    <div className="overflow-x-auto rounded-[var(--radius-md)] border border-border bg-card">
+      <table className="w-full min-w-[540px] border-collapse text-left text-[length:var(--text-sm)]">
         <thead>
           <tr className="border-b border-border bg-muted/60">
             {headers.map((h) => (
               <th
                 key={h}
                 scope="col"
-                className="px-4 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                className="px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-2xs)] uppercase tracking-[var(--ls-wide)] text-text-muted"
               >
                 {h}
               </th>
@@ -63,11 +63,11 @@ export function DataTable({
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} className="border-b border-border/70 last:border-0 align-top">
+            <tr key={i} className="border-b border-border/70 align-top last:border-0">
               {row.map((cell, j) => (
                 <td
                   key={j}
-                  className={`px-4 py-3.5 text-ink-body ${j === 0 ? "font-medium text-foreground" : ""}`}
+                  className={`px-[var(--space-4)] py-[var(--space-4)] text-text-body ${j === 0 ? "font-medium text-text-strong" : ""}`}
                 >
                   {cell}
                 </td>
@@ -82,11 +82,34 @@ export function DataTable({
 
 export function Quote({ children, source }: { children: ReactNode; source?: string }) {
   return (
-    <figure className="rounded-xl border-l-[3px] border-persimmon bg-card px-5 py-4">
-      <blockquote className="text-[15px] leading-relaxed text-ink-body">{children}</blockquote>
+    <figure className="rounded-[var(--radius-md)] border-l-[3px] border-accent bg-card px-[var(--space-5)] py-[var(--space-4)]">
+      <blockquote className="text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-body">
+        {children}
+      </blockquote>
       {source ? (
-        <figcaption className="mt-2 font-mono text-xs text-ink-muted">{source}</figcaption>
+        <figcaption className="mt-[var(--space-2)] font-mono text-[length:var(--text-xs)] text-text-muted">
+          {source}
+        </figcaption>
       ) : null}
+    </figure>
+  );
+}
+
+export function AuditFigure({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <figure className="overflow-hidden rounded-[var(--radius-md)] border border-border bg-surface-card shadow-sm">
+      <img src={src} alt={alt} className="w-full" loading="lazy" />
+      <figcaption className="border-t border-border px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-muted">
+        {caption}
+      </figcaption>
     </figure>
   );
 }
