@@ -12,8 +12,13 @@ Organized against the exact structure published at ase-nerdery.vercel.app: one f
 
 ## Overall completeness check
 
-All 6 required Friday-demo deliverables, plus all 15 micro-practices across the five days, are present and traceable to source files already in this repo (`design/*.md`) plus two external Claude artifacts (Monday's process map, Wednesday's flow) that were pulled in and converted to Markdown so each folder is self-contained.
+**Status: complete.** All 6 required Friday-demo deliverables and all 15 micro-practices across the five days are present, filed, and checked off in each day's own `README.md`.
 
-**Practice 4.1** ("Rank the hierarchy — and find the tokens behind it," no AI) was the one gap found while organizing — nothing had been written down for it. It was done properly afterward (no AI, cold look at the real screen) and is now in `Day-4-Thursday/practice-4.1-hierarchy-tokens.md`, including an honest note distinguishing a fresh first-look finding from a fast catch based on already knowing about a prior bug.
+- Monday: 3/3 practices + reflection + process map
+- Tuesday: 3/3 practices + audited synthesis + problem statements
+- Wednesday: 3/3 practices + flow + state/API contract
+- Thursday: 3/3 practices (including Practice 4.1, the one item found missing while organizing — done afterward with a cold, no-AI look at the real screen, in `Day-4-Thursday/practice-4.1-hierarchy-tokens.md`) + comparative audit
+- Friday: 4/4 practices + component + fidelity audit + guardrail + unresolved questions
+- Full-Week Extras: engineering checklist + handoff checklist
 
-Everything here was produced by the Nerd; this pass only organized and cross-referenced it, it didn't write the analysis.
+Everything here was produced by the Nerd; this pass only organized, cross-referenced, and filed it — it didn't write the analysis. Two external Claude artifacts (Monday's process map, Wednesday's flow) were pulled in and converted to Markdown so each folder is self-contained.
