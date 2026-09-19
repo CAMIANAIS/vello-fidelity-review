@@ -64,7 +64,14 @@ export function GuardrailDoneCallout() {
         ))}
       </ul>
       <p className="mt-[var(--space-4)] font-mono text-[length:var(--text-2xs)] text-text-muted">
-        Source: <Mono>{GUARDRAIL_SPEC.source}</Mono>
+        Source: <Mono>{GUARDRAIL_SPEC.source}</Mono>,{" "}
+        <a
+          href="/deliverables/guardrail.md"
+          download
+          className="underline hover:text-text-brand"
+        >
+          download it
+        </a>
       </p>
     </div>
   );

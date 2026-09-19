@@ -21,6 +21,8 @@ import contrastVerified from "../../design/docs/contrastIssue/contrast1.png";
 import useDesignTokens from "../../design/docs/audit/usedesign tokens.png";
 import shieldRefusal from "../../design/docs/answersClaude/tool refused to fake a component it couldn't verify.png";
 import rebuildAnswer from "../../design/docs/answersClaude/Rebuild-on-real-component.png";
+import lucidSiteMap from "../../design/docs/lucid.png";
+import lucidSchema from "../../design/docs/schemas.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -130,6 +132,7 @@ function AuditPage() {
                 { label: "Fidelity audit", base: "fidelity-audit" },
                 { label: "Engineering checklist", base: "engineering-design-support-checklist" },
                 { label: "Handoff checklist", base: "handoff-checklist" },
+                { label: "Guardrail used", base: "guardrail" },
               ].map((file) => (
                 <div
                   key={file.base}
@@ -541,12 +544,24 @@ function AuditPage() {
                       "Known failure, not yet closed: that session had no access to the live design system, so the flow came from generic marketplace patterns, not Vello’s real admin screens. Its “named gap” is a hypothesis, not a verified diff.",
                     links: [
                       {
-                        label: "Site map + schema (Lucidchart) ↗",
-                        href: "https://lucid.app/lucidchart/b0fdcfa5-107b-462f-bbef-ea44a64d9e00/edit?beaconFlowId=403E2B6CD2079D9F&page=0_0&invitationId=inv_e646af4a-ef4a-433c-abef-1d2c2c44f2f5#",
+                        label: "Lucidchart (requires Lucid login) ↗",
+                        href: "https://lucid.app/lucidchart/b0fdcfa5-107b-462f-bbef-ea44a64d9e00/edit?viewport_loc=1222%2C1883%2C1927%2C1638%2C0_0&invitationId=inv_e646af4a-ef4a-433c-abef-1d2c2c44f2f5",
                       },
                       {
                         label: "Flow + schema artifact ↗",
                         href: "https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L?sk=3qOUi4mBgiZ2B2Ngjefo8g",
+                      },
+                    ],
+                    figures: [
+                      {
+                        src: lucidSiteMap,
+                        alt: "Lucidchart flow diagram of the requester site map: homepage, add-button/navigate decision, post-a-request flow through submit and publish, message-or-book branch, and navigation to notifications, profile, messages, bookings",
+                        caption: "Requester site map, screenshotted directly since the Lucidchart link needs a login",
+                      },
+                      {
+                        src: lucidSchema,
+                        alt: "Entity-relationship schema with Categories, Users, Addresses, Requests, Conversations, Bookings, Messages, Ratings, and Notifications tables, with primary and foreign keys marked",
+                        caption: "The first-cut schema from the same Lucid doc, second page",
                       },
                     ],
                   },
@@ -586,6 +601,18 @@ function AuditPage() {
                           >
                             {link.label}
                           </a>
+                        ))}
+                      </div>
+                    ) : null}
+                    {d.figures ? (
+                      <div className="mt-[var(--space-4)] grid gap-[var(--space-4)] sm:grid-cols-2">
+                        {d.figures.map((fig) => (
+                          <AuditFigure
+                            key={fig.src}
+                            src={fig.src}
+                            alt={fig.alt}
+                            caption={fig.caption}
+                          />
                         ))}
                       </div>
                     ) : null}
