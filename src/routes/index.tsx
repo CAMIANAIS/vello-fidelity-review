@@ -522,7 +522,7 @@ function AuditPage() {
                     day: "Monday · design process mapping",
                     body: "Six-phase process map, Discover → Handoff, one decision and one artifact per phase.",
                     flag:
-                      "Honest gap: the task asked for two documented pushbacks against the first process map. That back-and-forth happened live, but wasn’t captured in writing. Naming it rather than pretending otherwise.",
+                      "Done now: the task asked for two documented pushbacks against the first process map. That back-and-forth happened live in session and wasn’t written down at the time. It’s written down now, below.",
                     links: [
                       { label: "Process map artifact ↗", href: "https://claude.ai/artifact/6v2sxFt3rQra9iUA6tabLu" },
                       { label: "One-page reflection + pushbacks", href: "/deliverables/monday-reflection.md" },
@@ -717,7 +717,8 @@ function AuditPage() {
                   {
                     day: "Monday · process",
                     items: [
-                      "Honest gap, named rather than hidden: the two documented pushbacks against the first process map happened live in session, but weren’t written down at the time.",
+                      "Handoff step needs to say explicitly that trust-carrying elements (VerifiedMark, Badge, Rating) hand off as real components, not just their token values. Tokens can be correct while the meaning is still gone, exactly what happened when the verified mark got rebuilt as a plain circle.",
+                      "Validate lists contrast, tap-target, and “is unverified honestly visible” side by side with no signal that only the last one is load-bearing for Vello specifically. Worth flagging which check actually matters most before someone (or an AI) treats them as equally routine.",
                     ],
                   },
                   {
@@ -727,6 +728,9 @@ function AuditPage() {
                       "Keep Provider.verification as a separate, coexisting attribute set (id_verified, background_check_status, references) alongside vouching. P02’s evidence shows the platform needs both, not one instead of the other.",
                       "Consider a known_by_requester boolean per vouch, so the UI can distinguish “someone you actually know” from “a stranger nearby who also used this provider.”",
                       "Consider a vouch_count / corroboration weighting. P06: “three unknowns might be worth one Denise.”",
+                      "Add Review.dispute_status (none/disputed/under_review/resolved). “Unchallengeable” is really the absence of this state today, not a bug in an existing one.",
+                      "Add Provider.fee_structure (percentage or flat, plus rate). The “forever-percentage cut” complaint implies the fee model is one fixed rule today, not a per-provider attribute.",
+                      "Add onboarding_started_at / onboarding_completed_at timestamps. Same field pair a separate quantitative question (is onboarding faster now?) already needed, two independent angles converging on one missing field.",
                     ],
                   },
                   {
