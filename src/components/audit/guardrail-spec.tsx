@@ -51,7 +51,13 @@ export function GuardrailDoneCallout() {
 
   return (
     <div className="rounded-[var(--radius-lg)] border border-border bg-card p-[var(--space-6)] shadow-sm sm:p-[var(--space-8)]">
-      <Eyebrow>{done.title}</Eyebrow>
+      <p className="text-[length:var(--text-sm)] text-text-muted">
+        Everything above followed this rule. It's pulled live from the same guardrail file that
+        governed the whole build, not just written here for effect.
+      </p>
+      <div className="mt-[var(--space-4)]">
+        <Eyebrow>{done.title}</Eyebrow>
+      </div>
       <ul className="mt-[var(--space-3)] max-w-2xl space-y-[var(--space-2)] text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-body">
         {done.items.map((item) => (
           <li key={item}>{item}</li>

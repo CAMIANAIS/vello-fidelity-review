@@ -25,13 +25,13 @@ import rebuildAnswer from "../../design/docs/answersClaude/Rebuild-on-real-compo
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vello ProviderCard — Design Fidelity Audit" },
+      { title: "Vello ProviderCard: Design Fidelity Audit" },
       {
         name: "description",
         content:
           "A section-by-section engineering and design fidelity audit of one AI-built Vello ProviderCard: token drift, accessibility findings, the guardrail test, and open questions for design.",
       },
-      { property: "og:title", content: "Vello ProviderCard — Design Fidelity Audit" },
+      { property: "og:title", content: "Vello ProviderCard: Design Fidelity Audit" },
       {
         property: "og:description",
         content:
@@ -45,14 +45,14 @@ export const Route = createFileRoute("/")({
 });
 
 const SECTIONS = [
-  { id: "guardrail", label: "01 — The guardrail" },
-  { id: "token-drift", label: "02 — Token drift" },
-  { id: "accessibility", label: "03 — Accessibility" },
-  { id: "guardrail-test", label: "04 — Guardrail test" },
-  { id: "open-questions", label: "05 — Open questions" },
-  { id: "process", label: "06 — Process log" },
-  { id: "checklist", label: "07 — Engineering checklist" },
-  { id: "handoff", label: "08 — Handoff asks" },
+  { id: "guardrail", label: "01 · The guardrail" },
+  { id: "token-drift", label: "02 · Token drift" },
+  { id: "accessibility", label: "03 · Accessibility" },
+  { id: "guardrail-test", label: "04 · Guardrail test" },
+  { id: "open-questions", label: "05 · Open questions" },
+  { id: "process", label: "06 · Process log" },
+  { id: "checklist", label: "07 · Engineering checklist" },
+  { id: "handoff", label: "08 · Handoff asks" },
 ];
 
 function AuditPage() {
@@ -79,7 +79,7 @@ function AuditPage() {
           <dl className="mt-10 grid gap-4 sm:grid-cols-3">
             {[
               { k: "Component", v: "ProviderCard (Maya Rivera)" },
-              { k: "Contrast checked", v: "5.69:1 — passes AA" },
+              { k: "Contrast checked", v: "5.69:1, passes AA" },
               { k: "Left unresolved", v: "5 questions for design" },
             ].map((item) => (
               <div
@@ -122,9 +122,11 @@ function AuditPage() {
           </div>
 
           <div className="mt-8">
-            <Eyebrow>Real deliverables — download</Eyebrow>
+            <Eyebrow>Real deliverables: download</Eyebrow>
             <div className="mt-[var(--space-3)] flex flex-wrap gap-3">
               {[
+                { label: "Monday reflection", base: "monday-reflection" },
+                { label: "Tuesday problem statements", base: "tuesday-problem-statements" },
                 { label: "Fidelity audit", base: "fidelity-audit" },
                 { label: "Engineering checklist", base: "engineering-design-support-checklist" },
                 { label: "Handoff checklist", base: "handoff-checklist" },
@@ -192,22 +194,22 @@ function AuditPage() {
               </Quote>
               <ul className="space-y-3">
                 <li>
-                  <strong className="text-text-strong">Real tokens, not hardcoded values</strong> —
-                  keeps every trust mark consistent across the app, so a requester learns to
+                  <strong className="text-text-strong">Real tokens, not hardcoded values.</strong>{" "}
+                  Keeps every trust mark consistent across the app, so a requester learns to
                   recognize it once and trusts it everywhere.
                 </li>
                 <li>
-                  <strong className="text-text-strong">Shape + color, never color alone</strong> — a
-                  shield rebuilt as a plain circle isn’t a small style slip, it’s the accessible
+                  <strong className="text-text-strong">Shape plus color, never color alone.</strong>{" "}
+                  A shield rebuilt as a plain circle isn’t a small style slip, it’s the accessible
                   signal the trust bet depends on, gone.
                 </li>
                 <li>
-                  <strong className="text-text-strong">Real labels, real keyboard access</strong> —
-                  if only sighted mouse users can perceive who’s verified, the trust mechanism
+                  <strong className="text-text-strong">Real labels, real keyboard access.</strong>{" "}
+                  If only sighted mouse users can perceive who’s verified, the trust mechanism
                   silently excludes everyone else.
                 </li>
                 <li>
-                  <strong className="text-text-strong">Flag uncertainty, never guess</strong> — an
+                  <strong className="text-text-strong">Flag uncertainty, never guess.</strong> An
                   invented data point is worse than an honest gap, because it’s a false trust signal
                   presented as a real one.
                 </li>
@@ -219,7 +221,7 @@ function AuditPage() {
               id="token-drift"
               number="02"
               title="Token drift: found and fixed"
-              summary="Six properties measured against the real token files, not the docs page — the docs page is a JS app with nothing machine-readable in it."
+              summary="Six properties measured against the real token files, not the docs page, since the docs page is a JS app with nothing machine-readable in it."
             >
               <DataTable
                 headers={["Property", "Was", "Now", "Token"]}
@@ -273,7 +275,7 @@ function AuditPage() {
               </p>
               <Quote>
                 Fixing card padding to the token scale (15px → 20px) made the build more
-                token-correct but <em>less</em> pixel-faithful to the actual reference — because the
+                token-correct but <em>less</em> pixel-faithful to the actual reference, because the
                 reference itself doesn’t follow its own scale. The walk-chip’s padding and the
                 card’s 14px gap are exact matches to real, off-token production code.
               </Quote>
@@ -296,7 +298,7 @@ function AuditPage() {
                   [
                     <span key="1">
                       Card’s outer wrapper was a <Mono>div</Mono> with <Mono>cursor:pointer</Mono>{" "}
-                      only — mouse-clickable, not keyboard-reachable
+                      only, mouse-clickable but not keyboard-reachable
                     </span>,
                     "WCAG 2.1.1 Keyboard (Level A)",
                     <span key="2">
@@ -307,7 +309,7 @@ function AuditPage() {
                   [
                     <span key="3">
                       Verified mark had no <Mono>role</Mono>, <Mono>aria-label</Mono> or{" "}
-                      <Mono>title</Mono> — invisible to screen readers
+                      <Mono>title</Mono>, invisible to screen readers
                     </span>,
                     "WCAG 1.1.1 Non-text Content",
                     <span key="4">
@@ -324,7 +326,7 @@ function AuditPage() {
                     "Contrast: walk-time chip text on its background",
                     "WCAG 1.4.3 AA (4.5:1)",
                     <span key="5">
-                      Checked: <strong className="text-text-brand">5.69:1</strong> — passes, no fix
+                      Checked: <strong className="text-text-brand">5.69:1</strong>, passes, no fix
                       needed
                     </span>,
                   ],
@@ -367,7 +369,7 @@ function AuditPage() {
               <p>
                 The contrast number is <Mono>--green-700</Mono> on <Mono>--green-100</Mono>, checked
                 in the WebAIM Contrast Checker. The real background is <Mono>--green-50</Mono>,
-                lighter — so the shipped ratio is at least this good.
+                lighter, so the shipped ratio is at least this good.
               </p>
               <div className="rounded-[var(--radius-md)] border border-border bg-muted/50 p-[var(--space-5)]">
                 <Eyebrow>Conflict flagged, not silently resolved</Eyebrow>
@@ -375,7 +377,7 @@ function AuditPage() {
                   The chevron affordance in the reference is ~28px, below the 44px tap-target
                   baseline. Resolved the way the system’s own “tappable cards” pattern does it: the
                   whole card is the focusable button, the chevron is <Mono>aria-hidden</Mono>{" "}
-                  decoration. If the chevron itself should be the control, it has to grow to 44px —
+                  decoration. If the chevron itself should be the control, it has to grow to 44px,
                   which changes the header layout. Noted as a real tradeoff, not fixed silently
                   either way.
                 </p>
@@ -407,7 +409,7 @@ function AuditPage() {
               </div>
               <div className="grid gap-[var(--space-4)] sm:grid-cols-2">
                 <div className="rounded-[var(--radius-md)] border border-border bg-card p-[var(--space-5)] shadow-brand">
-                  <StatusPill tone="open">Before — v1–v3</StatusPill>
+                  <StatusPill tone="open">Before, v1 to v3</StatusPill>
                   <p className="mt-[var(--space-4)]">
                     Padding, shadow, text sizes, badge color, the verified mark’s shape, its missing
                     label, and the keyboard bug each needed a separate, hand-written fix
@@ -415,10 +417,10 @@ function AuditPage() {
                   </p>
                 </div>
                 <div className="rounded-[var(--radius-md)] border border-brand-primary/30 bg-success-tint/50 p-[var(--space-5)] shadow-brand">
-                  <StatusPill tone="fixed">After — guardrail active</StatusPill>
+                  <StatusPill tone="fixed">After, guardrail active</StatusPill>
                   <p className="mt-[var(--space-4)]">
                     Regenerated from a plain instruction with no hand-corrected spec. Every one of
-                    those matched the reference on the first try, with no follow-up — and it flagged
+                    those matched the reference on the first try, with no follow-up, and it flagged
                     two new honest gaps on its own instead of guessing.
                   </p>
                 </div>
@@ -427,11 +429,11 @@ function AuditPage() {
                 <Eyebrow>Judgment calls</Eyebrow>
                 <p className="mt-[var(--space-3)]">
                   Two things it refused to fake, correctly: the shield (asked twice for the real
-                  source instead of approximating with a circle), and the avatar photo — it rendered
+                  source instead of approximating with a circle), and the avatar photo. It rendered
                   the real <Mono>Avatar</Mono> initials fallback rather than invent a portrait. For
                   the card width, where no container token matches the reference, it used{" "}
-                  <Mono>calc(var(--container-app) + var(--space-12))</Mono> — a token-derived value
-                  — and flagged it, instead of a guessed raw px.
+                  <Mono>calc(var(--container-app) + var(--space-12))</Mono>, a token-derived value,
+                  and flagged it instead of a guessed raw px.
                 </p>
                 <div className="mt-[var(--space-4)]">
                   <AuditFigure
@@ -462,7 +464,7 @@ function AuditPage() {
                   },
                   {
                     t: "No icon-size token exists",
-                    d: "Tag = 16px, card chevron = 15px, walk icon = 13px — all hardcoded independently, nowhere in the system. Left at 13px and flagged, rather than rounding to 14px, which would invent a false match between icon size and type size.",
+                    d: "Tag = 16px, card chevron = 15px, walk icon = 13px, all hardcoded independently and nowhere in the system. Left at 13px and flagged, rather than rounding to 14px, which would invent a false match between icon size and type size.",
                   },
                   {
                     t: "No container-width token matches the card",
@@ -470,7 +472,7 @@ function AuditPage() {
                   },
                   {
                     t: "Three items found on the reference screen itself",
-                    d: "Tag/chevron crowding, the “$24 / walk” price line’s spacing, and the walk-time chip showing both a feet icon and the word “walk.” Not introduced by the AI — inherited correctly. Intentional, or worth fixing at the source?",
+                    d: "Tag/chevron crowding, the “$24 / walk” price line’s spacing, and the walk-time chip showing both a feet icon and the word “walk.” Not introduced by the AI, inherited correctly. Intentional, or worth fixing at the source?",
                   },
                   {
                     t: "Rebuild on the real ProviderCard?",
@@ -478,7 +480,7 @@ function AuditPage() {
                     figure: {
                       src: rebuildAnswer,
                       alt: "AI response noting the audit card is a hand-built copy of ProviderCard and offering to rebuild it on the real component",
-                      caption: "The exact moment this question came up — asked, not decided silently",
+                      caption: "The exact moment this question came up: asked, not decided silently",
                     },
                   },
                 ].map((q, i) => (
@@ -509,27 +511,31 @@ function AuditPage() {
               id="process"
               number="06"
               title="Process log: Monday to Friday"
-              summary="The prompts, the failures caught, and the refinements — including the gaps that are still open."
+              summary="The prompts, the failures caught, and the refinements, including the gaps that are still open."
             >
               <div className="space-y-5">
                 {[
                   {
-                    day: "Monday — design process mapping",
+                    day: "Monday · design process mapping",
                     body: "Six-phase process map, Discover → Handoff, one decision and one artifact per phase.",
                     flag:
                       "Honest gap: the task asked for two documented pushbacks against the first process map. That back-and-forth happened live, but wasn’t captured in writing. Naming it rather than pretending otherwise.",
                     links: [
                       { label: "Process map artifact ↗", href: "https://claude.ai/artifact/6v2sxFt3rQra9iUA6tabLu" },
+                      { label: "One-page reflection + pushbacks", href: "/deliverables/monday-reflection.md" },
                     ],
                   },
                   {
-                    day: "Tuesday — research synthesis",
+                    day: "Tuesday · research synthesis",
                     body: "Themes with participant counts, verbatim quotes, and contradicting evidence, separated from inference.",
                     flag:
-                      "Failure caught: the first pass counted Theme 1 as 5/6 participants in support. Auditing back to verbatim quotes showed P02 was a direct contradiction — he wants formal verification, not just vouching. Corrected to “2 strong, 2 adjacent, 1 direct contradiction”: materially weaker, and more honest.",
+                      "Failure caught: the first pass counted Theme 1 as 5/6 participants in support. Auditing back to verbatim quotes showed P02 was a direct contradiction, he wants formal verification, not just vouching. Corrected to “2 strong, 2 adjacent, 1 direct contradiction”: materially weaker, and more honest.",
+                    links: [
+                      { label: "Problem statements + entities", href: "/deliverables/tuesday-problem-statements.md" },
+                    ],
                   },
                   {
-                    day: "Wednesday — flow + state/API contract",
+                    day: "Wednesday · flow + state/API contract",
                     body: "Full flow diagram, per-screen state tables, endpoint list with states.",
                     flag:
                       "Known failure, not yet closed: that session had no access to the live design system, so the flow came from generic marketplace patterns, not Vello’s real admin screens. Its “named gap” is a hypothesis, not a verified diff.",
@@ -545,14 +551,14 @@ function AuditPage() {
                     ],
                   },
                   {
-                    day: "Thursday — component audit",
+                    day: "Thursday · component audit",
                     body: "An AI pass and a human pass, run separately, then compared.",
                     flag:
-                      "Only the human caught: wrong badge component/variant, redundant icon + text, and the trust-hierarchy note. Only the AI caught: touch-target size, the keyboard/focus bug, a color-only signal, and a 4.51:1 contrast risk. Overlap: none — fully complementary.",
+                      "Only the human caught: wrong badge component/variant, redundant icon + text, and the trust-hierarchy note. Only the AI caught: touch-target size, the keyboard/focus bug, a color-only signal, and a 4.51:1 contrast risk. Overlap: none, fully complementary.",
                   },
                   {
-                    day: "Friday — spec sheet + build prompt",
-                    body: "A no-AI spec sheet, property by property, with the correct official token for each — then the build prompt, then the guardrail.",
+                    day: "Friday · spec sheet + build prompt",
+                    body: "A no-AI spec sheet, property by property, with the correct official token for each, then the build prompt, then the guardrail.",
                     flag:
                       "Prompt v2 swapped the vague “attached design system” for the actual colors.css, spacing.css and typography.css contents, after discovering the docs page is a JS app with nothing a tool can read.",
                   },
@@ -587,7 +593,7 @@ function AuditPage() {
                 ))}
               </div>
               <Quote source="Thursday verified-badge check, against Monday’s own artifact">
-                “Olive shield, never a dot” — checked directly against the real card: it{" "}
+                “Olive shield, never a dot,” checked directly against the real card: it{" "}
                 <em>is</em> a shield. Not a violation. A hypothesis tested and disproved, kept as a
                 legitimate finding rather than discarded.
               </Quote>
@@ -595,7 +601,7 @@ function AuditPage() {
                 <Eyebrow>The line in every build prompt</Eyebrow>
                 <p className="mt-[var(--space-3)] font-mono text-[length:var(--text-sm)] leading-[var(--lh-relaxed)] text-text-body">
                   “Where you have to invent or guess something I didn’t specify, say so explicitly
-                  instead of silently picking a value — I want to review those separately.”
+                  instead of silently picking a value. I want to review those separately.”
                 </p>
               </div>
             </Section>
@@ -682,13 +688,13 @@ function AuditPage() {
               <div className="space-y-5">
                 {[
                   {
-                    day: "Monday — process",
+                    day: "Monday · process",
                     items: [
                       "Honest gap, named rather than hidden: the two documented pushbacks against the first process map happened live in session, but weren’t written down at the time.",
                     ],
                   },
                   {
-                    day: "Tuesday — research to data model",
+                    day: "Tuesday · research to data model",
                     items: [
                       "Add Vouch/Recommendation as its own entity (voucher_id, provider_id, times_used, free-text comment, timestamp), not folded into a generic star rating. P01: “used him eleven times… that’s the whole product.”",
                       "Keep Provider.verification as a separate, coexisting attribute set (id_verified, background_check_status, references) alongside vouching. P02’s evidence shows the platform needs both, not one instead of the other.",
@@ -697,14 +703,14 @@ function AuditPage() {
                     ],
                   },
                   {
-                    day: "Wednesday — flow / API contract",
+                    day: "Wednesday · flow / API contract",
                     items: [
-                      "Confirm the browse-first happy path (vs. the brief’s “post a need” first) is the intended v1 flow. I went browse-first for a tighter 5–6 step path — it needs sign-off, not assumption.",
+                      "Confirm the browse-first happy path (vs. the brief’s “post a need” first) is the intended v1 flow. I went browse-first for a tighter 5–6 step path, it needs sign-off, not assumption.",
                       "Still open: the flow was drafted without live access to the real Admin screen, so its named gap is a hypothesis, never verified against the actual prototype.",
                     ],
                   },
                   {
-                    day: "Thursday — component audit",
+                    day: "Thursday · component audit",
                     items: [
                       "Wrong badge component/variant used for “Available” in the source prototype (accent/coral instead of success/green). Worth fixing at the source, not just in the AI-generated copy.",
                       "Walk-time chip shows both a feet icon and the word “walk.” Confirm intentional or simplify.",
@@ -712,7 +718,7 @@ function AuditPage() {
                     ],
                   },
                   {
-                    day: "Friday — component fidelity",
+                    day: "Friday · component fidelity",
                     items: [
                       "Layout conflict: the documented ProviderCard and the Home screen place rating and price differently. Which should new builds follow?",
                       "No icon-size token or scale exists anywhere in the system (Tag = 16px, chevron = 15px, walk icon = 13px). Should one be defined?",
