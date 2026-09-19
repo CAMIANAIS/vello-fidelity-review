@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { GuardrailDoneCallout, GuardrailSpec } from "@/components/audit/guardrail-spec";
 import { Section } from "@/components/audit/section";
 import {
@@ -97,13 +97,19 @@ function AuditPage() {
           </dl>
 
           <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              to="/live-component"
+              className="rounded-[var(--radius-md)] border border-brand-primary bg-brand-primary px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] font-semibold text-[color:var(--brand-on-primary)] hover:bg-brand-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              Live component, in this repo →
+            </Link>
             <a
               href="https://claude.ai/design/p/82fde247-6976-415f-b9a6-f69df091813a?file=Vello+Provider+Card.dc.html&via=share"
               target="_blank"
               rel="noreferrer"
               className="rounded-[var(--radius-md)] border border-border bg-card px-[var(--space-4)] py-[var(--space-3)] font-mono text-[length:var(--text-xs)] text-text-body hover:border-text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
-              Working build (guardrail-active, the “after”) ↗
+              Original Claude Design build (guardrail-active, the “after”) ↗
             </a>
             <a
               href="https://claude.ai/design/p/a31ed5d9-0b86-4424-8dff-301c4a5b2f56?file=Provider+Card+Audit.dc.html"
