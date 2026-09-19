@@ -23,9 +23,8 @@ function ComponentDemo() {
             ProviderCard — the real component
           </h1>
           <p className="mt-3 text-[length:var(--text-sm)] text-text-body">
-            Rebuilt in this repo from the Friday spec sheet and token-drift
-            corrections, not just described in the audit. Four states, built
-            explicitly rather than only the happy path.
+            Rebuilt in this repo from the Friday spec sheet and token-drift corrections, not just
+            described in the audit. Four states, built explicitly rather than only the happy path.
           </p>
         </div>
 

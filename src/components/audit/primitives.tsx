@@ -38,13 +38,7 @@ export function StatusPill({
   );
 }
 
-export function DataTable({
-  headers,
-  rows,
-}: {
-  headers: string[];
-  rows: ReactNode[][];
-}) {
+export function DataTable({ headers, rows }: { headers: string[]; rows: ReactNode[][] }) {
   return (
     <div className="overflow-x-auto rounded-[var(--radius-md)] border border-border bg-card">
       <table className="w-full min-w-[540px] border-collapse text-left text-[length:var(--text-sm)]">
@@ -95,15 +89,7 @@ export function Quote({ children, source }: { children: ReactNode; source?: stri
   );
 }
 
-export function AuditFigure({
-  src,
-  alt,
-  caption,
-}: {
-  src: string;
-  alt: string;
-  caption: string;
-}) {
+export function AuditFigure({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   const [zoomed, setZoomed] = useState(false);
 
   useEffect(() => {

@@ -4,10 +4,7 @@ const STAR_PATH =
 function Star({ filled }: { filled: boolean }) {
   return (
     <svg width={14} height={14} viewBox="0 0 20 19" aria-hidden="true">
-      <path
-        d={STAR_PATH}
-        fill={filled ? "var(--rating)" : "var(--ink-150)"}
-      />
+      <path d={STAR_PATH} fill={filled ? "var(--rating)" : "var(--ink-150)"} />
     </svg>
   );
 }
@@ -18,9 +15,7 @@ function Star({ filled }: { filled: boolean }) {
  */
 export function Rating({ value, size = "sm" }: { value: number | null; size?: "sm" }) {
   if (value === null) {
-    return (
-      <span className="text-[length:var(--text-xs)] text-text-muted">Not rated yet</span>
-    );
+    return <span className="text-[length:var(--text-xs)] text-text-muted">Not rated yet</span>;
   }
 
   const rounded = Math.round(value);

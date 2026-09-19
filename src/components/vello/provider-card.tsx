@@ -64,11 +64,7 @@ export function ProviderCard({
       onMouseLeave={() => setHovered(false)}
       className="relative block w-full rounded-[var(--radius-lg)] border border-border bg-surface-card p-[var(--space-5)] text-left transition-shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       style={{
-        boxShadow: featured
-          ? "var(--shadow-brand)"
-          : hovered
-            ? "var(--shadow-lg)"
-            : "none",
+        boxShadow: featured ? "var(--shadow-brand)" : hovered ? "var(--shadow-lg)" : "none",
       }}
     >
       {/* Chevron affordance — decorative only. The whole card is the real
@@ -101,11 +97,7 @@ export function ProviderCard({
       <div className="flex items-start gap-[var(--space-3)] pr-[32px]">
         <div className="relative shrink-0">
           {photoUrl ? (
-            <img
-              src={photoUrl}
-              alt=""
-              className="h-14 w-14 rounded-full object-cover"
-            />
+            <img src={photoUrl} alt="" className="h-14 w-14 rounded-full object-cover" />
           ) : (
             <div
               className="flex h-14 w-14 items-center justify-center rounded-full font-[var(--font-display)] font-bold text-text-brand"
@@ -146,9 +138,7 @@ export function ProviderCard({
             </span>
           </div>
 
-          <p className="mt-[var(--space-1)] text-[length:var(--text-sm)] text-text-body">
-            {bio}
-          </p>
+          <p className="mt-[var(--space-1)] text-[length:var(--text-sm)] text-text-body">{bio}</p>
 
           <p className="mt-[var(--space-2)] font-[var(--font-mono)] text-[length:var(--text-sm)] text-text-strong">
             <span className="text-text-muted">from </span>

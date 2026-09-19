@@ -1,4 +1,8 @@
-import { GUARDRAIL_SPEC, getGuardrailSection, type GuardrailSection } from "../../../design/docs/guardaril";
+import {
+  GUARDRAIL_SPEC,
+  getGuardrailSection,
+  type GuardrailSection,
+} from "../../../design/docs/guardaril";
 import { Eyebrow, Mono } from "./primitives";
 
 const PANEL_STYLES: Record<NonNullable<GuardrailSection["tone"]>, string> = {
@@ -23,9 +27,7 @@ function GuardrailList({ items, mono = false }: { items: readonly string[]; mono
 function GuardrailPanel({ section }: { section: GuardrailSection }) {
   const tone = section.tone ?? "default";
   return (
-    <div
-      className={`rounded-[var(--radius-md)] border p-[var(--space-5)] ${PANEL_STYLES[tone]}`}
-    >
+    <div className={`rounded-[var(--radius-md)] border p-[var(--space-5)] ${PANEL_STYLES[tone]}`}>
       <Eyebrow>{section.title}</Eyebrow>
       <GuardrailList items={section.items} mono={section.id === "tokens"} />
     </div>
@@ -65,11 +67,7 @@ export function GuardrailDoneCallout() {
       </ul>
       <p className="mt-[var(--space-4)] font-mono text-[length:var(--text-2xs)] text-text-muted">
         Source: <Mono>{GUARDRAIL_SPEC.source}</Mono>,{" "}
-        <a
-          href="/deliverables/guardrail.md"
-          download
-          className="underline hover:text-text-brand"
-        >
+        <a href="/deliverables/guardrail.md" download className="underline hover:text-text-brand">
           download it
         </a>
       </p>

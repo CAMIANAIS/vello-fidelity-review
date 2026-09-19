@@ -69,7 +69,7 @@ them away or invent anything:
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://vello-fidelity-review.lovable.app
+**Live app**: https://vello-fidelity-review.vercel.app
 
 ## Build with Lovable
 

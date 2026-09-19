@@ -42,7 +42,7 @@ export const GUARDRAIL_SPEC = {
       items: [
         "Body text never below 14px. Tap targets never below 44px. Contrast never below 4.5:1.",
         "Any tappable element must be a real focusable control (<button>, or tabIndex + keyboard handler) — never a div/span with only onClick.",
-        "Status icons/marks need a real accessible label (title/aria-label/role=\"img\").",
+        'Status icons/marks need a real accessible label (title/aria-label/role="img").',
         "Never replace a shape+color signal with color/shape alone.",
       ],
     },
