@@ -4,6 +4,8 @@ A week-long Ravn Nerdery exercise in design literacy and AI-assisted engineering
 
 **Live app:** https://vello-fidelity-review.vercel.app
 
+![My ProviderCard, before and after correcting it against the real Vello tokens](Weekly-Deliverables/Day-5-Friday/images/firstpromptversion.png)
+
 ## What this repo is
 
 This is a work sample, not a product. `src/` holds the actual `ProviderCard` component (plus `Rating` and `VerifiedMark`) built and audited on Friday, and the site itself presents the week's fidelity audit for mentor review, section by section.
