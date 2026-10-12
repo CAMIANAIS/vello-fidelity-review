@@ -44,8 +44,17 @@ Provider submits profile + KYC documents → system sets `status = pending` → 
 | `GET /admin/verifications/:id/activity` `[A]` | 200 events[] · 404 · 401/403 |
 | `POST /admin/verifications/:id/remind` `[A]` | 200 sent · 429 reminded recently `[A]` · 404/401/403 |
 
-## 05 · Named gap vs. Vello's current screens
-**The "changes requested" loop is a hypothesis, not a confirmed screen.** The design system docs couldn't be loaded live this session, so this isn't a verified diff — it's the most common gap in first-pass admin panels of this shape: Approve/Reject usually ships first, while a structured "Request More Info" loop (modal, status, provider-side visibility, staleness timer) tends to arrive later or not at all. If Vello's admin screens today only expose Approve and Reject, everything downstream of "Request info" in the flow is the gap. **Still open (from the handoff checklist):** go check the real Admin desk screen in the prototype and confirm or correct this before presenting it as a finding.
+## 05 · Named gap vs. Vello's current screens (checked in Polish Week)
+
+I checked the real Vello app: https://vello-design-system.vercel.app/ui_kits/vello-app/index.html
+
+**First:** Vello has no admin screen. So the admin flow above is a proposal, not a comparison with a real screen.
+
+**The gap I found:** I booked a provider in the real app. The confirmation screen says "You're all set! Maya will see you Today at 3:00 PM." But the Bookings tab shows "Pending." My flow says "Request sent, waiting for the provider to accept."
+
+**Who gets hurt:** the requester thinks the booking is confirmed, but the provider never accepted. The requester waits at home at 3 PM and nobody comes.
+
+![Vello confirmation screen says "You're all set!"](images/vello-confirm-all-set.png)
 
 ## All assumptions, in one place
 - A submission is auto-claimed as `in_review` when an admin opens it, with an idle timeout that releases the claim.

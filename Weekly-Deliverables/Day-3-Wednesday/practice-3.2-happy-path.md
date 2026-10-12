@@ -24,3 +24,13 @@ I used the four questions from the design office hour on step 3, **Request booki
    - **Provider never answers:** the requester sees "Waiting for approval." The request expires after 24 hours. Then they see that the request expired, and a button to choose another provider.
 
 **My product decision: the request expires after 24 hours.** It gives the provider time to answer, and the requester doesn't wait too long. The requester may need an urgent response.
+
+## My list vs Claude's list
+
+After I wrote my own list, I asked Claude for its list of edge cases in the booking flow: empty (no providers nearby), loading, network error, time slot taken, provider never answers, provider declines, requester cancels while waiting, payment fails, not logged in, and provider becomes unavailable after accepting.
+
+- **We both had:** network error, time slot taken, and provider never answers.
+- **Only I had:** the 24-hour rule. Claude only said "timeout." It didn't decide how long or why.
+- **The one I missed that hurts most:** the provider becomes unavailable after accepting. There is a deal, and when the provider backs out, the requester and the app are badly damaged.
+  - **What the requester sees:** a notification saying the provider is unavailable, and a button to book again with a discount for the bad coordination.
+  - **Who pays for the discount:** Vello pays. It keeps requesters trusting the app.
