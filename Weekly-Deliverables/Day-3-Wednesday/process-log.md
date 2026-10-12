@@ -6,4 +6,6 @@
 **Output:** Full flow diagram + per-screen state tables + API contract.
 Artifact: https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L
 
-**Known failure, not yet closed:** that session couldn't load the live design system (no browser access at the time), so the flow was built from generic two-sided-marketplace patterns, not Vello's real admin screens. Its own "named gap" section says so explicitly — it's a hypothesis, not a verified diff. **Still open:** go check the real Admin desk screen in the prototype and confirm or correct the gap before presenting it as a finding.
+**Known failure, closed in Polish Week:** that session couldn't load the live design system (no browser access at the time), so the flow was built from generic two-sided-marketplace patterns, not Vello's real admin screens. Its own "named gap" section says so explicitly — it's a hypothesis, not a verified diff. **Was open:** go check the real Admin desk screen in the prototype and confirm or correct the gap before presenting it as a finding.
+
+**Closed (Polish Week):** I checked the real Vello app. Vello has no admin screen. I found a real gap in the booking flow instead: the confirmation screen says "You're all set!", but the Bookings tab shows "Pending." See `deliverable-wednesday-flow.md`, section 05.

@@ -21,4 +21,4 @@ Organized against the exact structure published at ase-nerdery.vercel.app: one f
 - Friday: 4/4 practices + component + fidelity audit + guardrail + unresolved questions
 - Full-Week Extras: engineering checklist + handoff checklist
 
-Everything here was produced by the Nerd; this pass only organized, cross-referenced, and filed it — it didn't write the analysis. Two external Claude artifacts (Monday's process map, Wednesday's flow) were pulled in and converted to Markdown so each folder is self-contained.
+The parts marked "with Claude" were drafted by Claude. I found the gaps, wrote the no-AI parts in my own words, and made product decisions, like the 24-hour expiry for a booking request (see `Day-3-Wednesday/practice-3.2-happy-path.md`).

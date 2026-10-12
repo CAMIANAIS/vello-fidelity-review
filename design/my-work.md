@@ -223,7 +223,7 @@ Named themes
 WEDNESDAY
 PRACTICE 3. 1IA to schema, from memory.
 A rough requester site map next to a first-cut schema, with the agreement/divergence points marked.
-https://lucid.app/lucidchart/b0fdcfa5-107b-462f-bbef-ea44a64d9e00/edit?beaconFlowId=403E2B6CD2079D9F&page=0_0&invitationId=inv_e646af4a-ef4a-433c-abef-1d2c2c44f2f5#
+![My requester site map and schema](docs/lucid.png)
 
 PRACTICE 3.2 Break a happy path → derive the API states.
 Based on the workflow the brief describes (browse → respond with pricing → book/pay → rate), here's the simplest happy path:
@@ -273,7 +273,7 @@ The brief treats Requester, Provider, and Admin as three distinct personas with 
 Pricing appears twice with different meanings: ProviderListing carries an "advertised" price (what a Requester sees while browsing, feeding the ProviderCard), while the workflow says Providers "respond with availability and pricing" per request — a job-specific quote. The UI likely wants to show one clean price on the card, but the data model needs to keep the listing price and the negotiated booking price as separate fields, or bookings will silently overwrite what was advertised.
 Verification is shown in the UI as a single binary VerifiedBadge, but the underlying process ("Admins verify new providers before marketplace appearance") is really a state machine — pending, verified, rejected — with an admin actor and a timestamp attached. A true data model wants an audit trail (who verified, when, maybe per category), which a single badge flag on ProviderListing doesn't capture.
 FROM WEDNESDAY TO FRIDAY
-https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L?sk=3qOUi4mBgiZ2B2Ngjefo8g
+https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L
 
 THURSDAY
 PRACTICE 4.1
