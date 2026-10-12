@@ -549,12 +549,8 @@ function AuditPage() {
                   flag: "Known failure, not yet closed: that session had no access to the live design system, so the flow came from generic marketplace patterns, not Vello’s real admin screens. Its “named gap” is a hypothesis, not a verified diff.",
                   links: [
                     {
-                      label: "Lucidchart (requires Lucid login) ↗",
-                      href: "https://lucid.app/lucidchart/b0fdcfa5-107b-462f-bbef-ea44a64d9e00/edit?viewport_loc=1222%2C1883%2C1927%2C1638%2C0_0&invitationId=inv_e646af4a-ef4a-433c-abef-1d2c2c44f2f5",
-                    },
-                    {
                       label: "Flow + schema artifact ↗",
-                      href: "https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L?sk=3qOUi4mBgiZ2B2Ngjefo8g",
+                      href: "https://claude.ai/artifact/11BEDoUTzer4u5CKTDDY7L",
                     },
                   ],
                   figures: [
